@@ -1,0 +1,1033 @@
+{
+  "datasets": [
+    {
+      "name": "cdf8c940",
+      "displayName": "synthetic_ifc_projects_5000_cleaned",
+      "queryLines": [
+        "SELECT *\r\n",
+        "FROM demo.arjunxnair.ifc_investment_services_projects_cleaned_view"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "d26c9ddb",
+      "displayName": "IFC Investment Services Projects",
+      "layout": [
+        {
+          "widget": {
+            "name": "regional-distribution-ifc-investments",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                      "expression": "SUM(`total_ifc_investment_as_approved_by_board_million_usd`)"
+                    },
+                    {
+                      "name": "country",
+                      "expression": "`country`"
+                    },
+                    {
+                      "name": "wb_country_code",
+                      "expression": "`wb_country_code`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 1,
+              "widgetType": "choropleth-map",
+              "encodings": {
+                "color": {
+                  "fieldName": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                  "displayName": "Total IFC Investment Amount (Million)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "extra": [
+                  {
+                    "fieldName": "country"
+                  }
+                ],
+                "region": {
+                  "regionType": "mapbox-v4-admin",
+                  "admin0": {
+                    "fieldName": "wb_country_code",
+                    "type": "field",
+                    "geographicRole": "admin0-unit-code"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Regional Distribution of IFC Approved Investments",
+                "description": "The regional distribution of IFC approved investments reflects regional priorities and IFC’s investment strategy"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 2,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "regional-distribution-ifc-approved-investments",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "world_bank_region",
+                      "expression": "`world_bank_region`"
+                    },
+                    {
+                      "name": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                      "expression": "SUM(`total_ifc_investment_as_approved_by_board_million_usd`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "world_bank_region",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                  "displayName": "Total IFC Investment Amount (Million)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Regional Distribution of IFC Approved Investments",
+                "description": "Latin America & Caribbean, Sub-Saharan Africa, and Europe & Central Asia receive the largest shares of total investment. This suggests a strategic focus on these regions, likely due to their development needs, market opportunities, or project pipelines"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 3,
+            "width": 2,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "ifc-approved-investments-year-over-year",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "yearly(ifc_invested_date)",
+                      "expression": "DATE_TRUNC(\"YEAR\", `ifc_invested_date`)"
+                    },
+                    {
+                      "name": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                      "expression": "SUM(`total_ifc_investment_as_approved_by_board_million_usd`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "yearly(ifc_invested_date)",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                  "displayName": "Total IFC Investment Amount (Million)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "IFC Approved Investments Year-over-Year",
+                "description": "The year-over-year trend of IFC approved investments based on investment date shows a significant increase over time"
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 3,
+            "width": 2,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "3872d086",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "product_line",
+                      "expression": "`product_line`"
+                    },
+                    {
+                      "name": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                      "expression": "SUM(`total_ifc_investment_as_approved_by_board_million_usd`)"
+                    },
+                    {
+                      "name": "world_bank_region",
+                      "expression": "`world_bank_region`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                  "displayName": "Total IFC Investment Amount (Million)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "world_bank_region",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "product_line",
+                  "legend": {
+                    "hide": false,
+                    "position": "right"
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": false
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Regional Distribution of IFC Investments across Product Lines (Equity, Guarantee, Loan and Risk Management)",
+                "description": "Loan investments dominate in most regions, followed by Equity and Guarantee, with Risk Management receiving the least"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 13,
+            "width": 2,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "e26778a4",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                      "expression": "SUM(`total_ifc_investment_as_approved_by_board_million_usd`)"
+                    },
+                    {
+                      "name": "world_bank_region",
+                      "expression": "`world_bank_region`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                  "displayName": "Total IFC Investment Amount (Million)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "world_bank_region",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "industry",
+                  "legend": {
+                    "position": "right"
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": false
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Regional Distribution of IFC Approved Investments across Industries",
+                "description": "Strong regional focus on financial sector development and infrastructure, with some regions prioritizing manufacturing and agribusiness based on their economic context."
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 13,
+            "width": 2,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "a591edf7",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "environmental_category",
+                      "expression": "`environmental_category`"
+                    },
+                    {
+                      "name": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                      "expression": "SUM(`total_ifc_investment_as_approved_by_board_million_usd`)"
+                    },
+                    {
+                      "name": "world_bank_region",
+                      "expression": "`world_bank_region`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                  "displayName": "Total IFC Investment Amount (Million)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "world_bank_region",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "environmental_category",
+                  "legend": {
+                    "position": "right"
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": false
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Regional Distribution of IFC Approved Investments across Environmental Categories",
+                "description": "Environmental and social risk management is most emphasized in regions and categories with the highest approved investment for projects labeled as having limited or significant impact. "
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 13,
+            "width": 2,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "time",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "world_bank_region",
+                      "expression": "`world_bank_region`"
+                    },
+                    {
+                      "name": "avg(days_between_approval_and_signing)",
+                      "expression": "AVG(`days_between_approval_and_signing`)"
+                    },
+                    {
+                      "name": "avg(days_between_signing_and_investment)",
+                      "expression": "AVG(`days_between_signing_and_investment`)"
+                    },
+                    {
+                      "name": "avg(days_between_approval_and_investment)",
+                      "expression": "AVG(`days_between_approval_and_investment`)"
+                    }
+                  ],
+                  "cubeGroupingSets": {
+                    "sets": [
+                      {},
+                      {
+                        "fieldNames": [
+                          "world_bank_region"
+                        ]
+                      }
+                    ]
+                  },
+                  "disaggregated": false,
+                  "orders": [
+                    {
+                      "direction": "ASC",
+                      "expression": "`world_bank_region`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pivot",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "world_bank_region"
+                  }
+                ],
+                "cell": {
+                  "type": "multi-cell",
+                  "fields": [
+                    {
+                      "fieldName": "avg(days_between_approval_and_signing)",
+                      "cellType": "text",
+                      "format": {
+                        "type": "number-plain",
+                        "abbreviation": "none",
+                        "decimalPlaces": {
+                          "type": "exact",
+                          "places": 0
+                        },
+                        "hideGroupSeparator": true
+                      },
+                      "displayName": "Approval -> Signing (Avg Days)",
+                      "style": {
+                        "type": "color-scale",
+                        "backgroundColor": {
+                          "scale": {
+                            "type": "quantitative"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "fieldName": "avg(days_between_signing_and_investment)",
+                      "cellType": "text",
+                      "format": {
+                        "type": "number-plain",
+                        "abbreviation": "none",
+                        "decimalPlaces": {
+                          "type": "exact",
+                          "places": 0
+                        },
+                        "hideGroupSeparator": true
+                      },
+                      "displayName": "Signing -> Investment (Avg Days)",
+                      "style": {
+                        "type": "color-scale",
+                        "backgroundColor": {
+                          "scale": {
+                            "type": "quantitative"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "fieldName": "avg(days_between_approval_and_investment)",
+                      "cellType": "text",
+                      "format": {
+                        "type": "number-plain",
+                        "abbreviation": "none",
+                        "decimalPlaces": {
+                          "type": "exact",
+                          "places": 0
+                        },
+                        "hideGroupSeparator": true
+                      },
+                      "displayName": "Approval -> Investment (Avg Days)",
+                      "style": {
+                        "type": "color-scale",
+                        "backgroundColor": {
+                          "scale": {
+                            "type": "quantitative"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Average time taken between: Approval to Signing to Investment for each region"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 23,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "351484c9",
+            "multilineTextboxSpec": {
+              "lines": [
+                "***Investment Amount Analysis***"
+              ]
+            },
+            "specExtensions": {
+              "widgetBackgroundColor": {
+                "light": "#F8F9FA"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 6,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "c020cf97",
+            "multilineTextboxSpec": {
+              "lines": [
+                "Distribution Analysis"
+              ]
+            },
+            "specExtensions": {
+              "widgetBackgroundColor": {
+                "light": "#F8F9FA"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 6,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "7bd6bc47",
+            "multilineTextboxSpec": {
+              "lines": [
+                "***TIme to Approval and Investment Analysis***"
+              ]
+            },
+            "specExtensions": {
+              "widgetBackgroundColor": {
+                "light": "#F8F9FA"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 22,
+            "width": 6,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "61c61315",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# <span style=\"text-align:center;display:block\">**International Finance Corporation**</span>\n",
+                "\n",
+                "<span style=\"text-align:center;display:block\"><span style=\"font-size: 18px;\">**Conversational Finance Analyst**</span></span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 1,
+            "y": 0,
+            "width": 4,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "cc18e547",
+            "multilineTextboxSpec": {
+              "lines": [
+                "![](https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg)"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "951819eb",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"text-align:right;display:block;\">![](https://upload.wikimedia.org/wikipedia/commons/9/9d/Databricks-logo.svg)</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 5,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "246a6b14",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "world_bank_region",
+                      "expression": "`world_bank_region`"
+                    },
+                    {
+                      "name": "yearly(ifc_invested_date)",
+                      "expression": "DATE_TRUNC(\"YEAR\", `ifc_invested_date`)"
+                    },
+                    {
+                      "name": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                      "expression": "SUM(`total_ifc_investment_as_approved_by_board_million_usd`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "yearly(ifc_invested_date)",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  },
+                  "displayName": "Total IFC Investment Amount (Million)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "world_bank_region",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "% Distribution of Year-on-Year IFC Approved Investments across Regions",
+                "description": "The year-over-year trend of IFC approved investments based on investment date shows a fairly consistent focus across the world regions"
+              },
+              "mark": {
+                "layout": "percent-stack"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 28,
+            "width": 3,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "e2864ccc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "***Year on Year Trend*** ***Analysis***"
+              ]
+            },
+            "specExtensions": {
+              "widgetBackgroundColor": {
+                "light": "#F8F9FA"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 27,
+            "width": 6,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "8a6fd078",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "yearly(ifc_invested_date)",
+                      "expression": "DATE_TRUNC(\"YEAR\", `ifc_invested_date`)"
+                    },
+                    {
+                      "name": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                      "expression": "SUM(`total_ifc_investment_as_approved_by_board_million_usd`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "yearly(ifc_invested_date)",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_ifc_investment_as_approved_by_board_million_usd)",
+                  "displayName": "Total IFC Investment Amount (Million)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "industry",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "natural-order"
+                    }
+                  }
+                }
+              },
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "% Distribution of Year-on-Year IFC Approved Investments across Industries",
+                "description": "The year-over-year trend of IFC approved investments based on investment date shows a significant increase over time for Financial Markets while a reducing focus on Manufacturing and Mining sectors"
+              },
+              "mark": {
+                "layout": "percent-stack"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 28,
+            "width": 3,
+            "height": 9
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "fb971376",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "9bb48413",
+            "queries": [
+              {
+                "name": "dashboards/01f0ed0864e9142a9d1d125e8227dde3/datasets/01f0ef47c526104a92c50008f7e610cb_world_bank_region",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "world_bank_region",
+                      "expression": "`world_bank_region`"
+                    },
+                    {
+                      "name": "world_bank_region_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "world_bank_region",
+                    "queryName": "dashboards/01f0ed0864e9142a9d1d125e8227dde3/datasets/01f0ef47c526104a92c50008f7e610cb_world_bank_region"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "0d8aadd5",
+            "queries": [
+              {
+                "name": "dashboards/01f0ed0864e9142a9d1d125e8227dde3/datasets/01f0ef47c526104a92c50008f7e610cb_product_line",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "product_line",
+                      "expression": "`product_line`"
+                    },
+                    {
+                      "name": "product_line_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "product_line",
+                    "queryName": "dashboards/01f0ed0864e9142a9d1d125e8227dde3/datasets/01f0ef47c526104a92c50008f7e610cb_product_line"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 1,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "fab0b2f8",
+            "queries": [
+              {
+                "name": "dashboards/01f0ed0864e9142a9d1d125e8227dde3/datasets/01f0ef47c526104a92c50008f7e610cb_environmental_category",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "environmental_category",
+                      "expression": "`environmental_category`"
+                    },
+                    {
+                      "name": "environmental_category_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "environmental_category",
+                    "queryName": "dashboards/01f0ed0864e9142a9d1d125e8227dde3/datasets/01f0ef47c526104a92c50008f7e610cb_environmental_category"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 1,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "dcc39947",
+            "queries": [
+              {
+                "name": "dashboards/01f0ed0864e9142a9d1d125e8227dde3/datasets/01f0ef47c526104a92c50008f7e610cb_industry",
+                "query": {
+                  "datasetName": "cdf8c940",
+                  "fields": [
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "industry_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "industry",
+                    "queryName": "dashboards/01f0ed0864e9142a9d1d125e8227dde3/datasets/01f0ef47c526104a92c50008f7e610cb_industry"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "genieSpace": {
+      "isEnabled": true,
+      "overrideId": "01f0ecfe171e19a5a5b4fa106a995a17",
+      "enablementMode": "ENABLED"
+    },
+    "applyModeEnabled": false
+  }
+}
